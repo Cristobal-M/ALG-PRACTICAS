@@ -6,7 +6,7 @@ CXX = g++
 CPPFLAGS = -Wall -g  -I$(INC) -c
 
 
-all:$(BIN)/testocultar $(BIN)/testrevelar 
+all:$(BIN)/testocultar $(BIN)/testrevelar $(BIN)/Prueba
 
 # ************ Generación de documentación ******************
 documentacion:
@@ -19,6 +19,10 @@ $(OBJ)/imagen.o: $(SRC)/imagen.cpp $(INC)/imagen.h $(INC)/imagenES.h
 $(OBJ)/imagenES.o: $(SRC)/imagenES.cpp $(INC)/imagenES.h 
 	$(CXX) $(CPPFLAGS) $(SRC)/imagenES.cpp -o $(OBJ)/imagenES.o	
 
+$(OBJ)/texto.o: $(SRC)/texto.cpp $(INC)/texto.h
+	$(CXX) $(CPPFLAGS) $(SRC)/texto.cpp -o $(OBJ)/texto.o
+	
+	
 	
 $(BIN)/testocultar: $(OBJ)/testocultar.o $(OBJ)/imagen.o $(OBJ)/imagenES.o $(OBJ)/utilidades.o
 	$(CXX) -o $(BIN)/testocultar  $(OBJ)/testocultar.o $(OBJ)/imagen.o $(OBJ)/utilidades.o $(OBJ)/imagenES.o	
@@ -28,6 +32,14 @@ $(BIN)/testocultar: $(OBJ)/testocultar.o $(OBJ)/imagen.o $(OBJ)/imagenES.o $(OBJ
 $(BIN)/testrevelar: $(OBJ)/testrevelar.o $(OBJ)/imagen.o $(OBJ)/imagenES.o $(OBJ)/utilidades.o
 	$(CXX) -o $(BIN)/testrevelar  $(OBJ)/testrevelar.o $(OBJ)/imagen.o $(OBJ)/utilidades.o $(OBJ)/imagenES.o	
 	
+$(BIN)/Prueba: $(OBJ)/Prueba.o $(OBJ)/imagen.o $(OBJ)/imagenES.o $(OBJ)/utilidades.o $(OBJ)/texto.o
+	$(CXX) -o $(BIN)/Prueba $(OBJ)/Prueba.o $(OBJ)/imagen.o $(OBJ)/imagenES.o $(OBJ)/utilidades.o $(OBJ)/texto.o
+
+
+
+$(OBJ)/Prueba.o: $(SRC)/testImaocul.cpp $(INC)/imagen.h $(INC)/utilidades.h $(INC)/texto.h	
+	$(CXX) $(CPPFLAGS) $(SRC)/testImaocul.cpp -o $(OBJ)/Prueba.o	
+
 	
 $(OBJ)/utilidades.o: $(SRC)/utilidades.cpp $(INC)/imagen.h $(INC)/utilidades.h 
 	$(CXX) $(CPPFLAGS) $(SRC)/utilidades.cpp -o $(OBJ)/utilidades.o	

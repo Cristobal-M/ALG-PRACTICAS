@@ -13,24 +13,28 @@ class texto{
 	
 	private:
 		char *Nombre;
-		int Peso;
+		double Peso;
 		int Beneficio;
 	
 	public:
 		//----------CONSTRUCTOR--------------
-		texto();
+		texto(char *N, int B, double P){
+			Nombre = N;
+			Peso = P;
+			Beneficio = B;
+		}
 		//----------DESTRUCTOR---------------
-		~texto() { delete [] Nombre; }
+		~texto();
 		//-----------------------------------
 		//----------OTRAS FUNCIONES----------
 		//-----------------------------------
-		int Get_P(){ return Peso; }
+		double Get_P(){ return Peso; }
 		
 		int Get_B(){ return Beneficio; }
 		
-		char& Get_N() { return Nombre; }
+		char * Get_N() { return Nombre; }
 		
-		void Set (char *N, int P, int B) {
+		void Set (char *N, int B, double P) {
 			Nombre = N;
 			Peso = P;
 			Beneficio = B;
@@ -38,7 +42,7 @@ class texto{
 		
 		void Set_N (char *N) { Nombre = N; }
 		
-		void Set_P (int P) { Peso = P; }
+		void Set_P (double P) { Peso = P; }
 		
 		void Set_B (int B) { Beneficio = B; }
 	

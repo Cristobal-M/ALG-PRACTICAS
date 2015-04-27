@@ -1,31 +1,61 @@
 #include "imagen.h"
 #include "utilidades.h"
 #include "texto.h"
+#include <list>
+#include <stdlib.h>
 
-List <texto> ficheros;
-
-bool Seleccion_peso ( List <texto> &f, List <texto> &f1 ){
-	int l,l1;
-	l=f.Get_P();
-	l1=f1.Get_P();
-	return (l<l1);
+ostream & operator<<(ostream & s, texto t){
+	
+	s << t.Get_N();
+	return s;
 }
 
-bool Seleccion_beneficio ( List <texto> &f ){
-	int l,l1;
-	l=f.Get_B();
-	l1=f1.Get_B();
-	return (l>l1);
-}
+ostream & operator<<(ostream & s, const list <texto> f){
+	int fin=f.size();
+	list <texto> f2=f;
+	for (int i=0; i<fin;++i)
+		s << f2.front();
+		f2.pop_front();
+	return s;
 
-bool Seleccion_relacion ( List <texto> &f ){
-	double l,l1;
-	l=f.Get_B()/f.GetP();
-	l1=f1.Get_B()/f1.GetP();
-	return (l>l1);
 }
 
 
+
+list <texto> ficheros;
+
+//########################################################################
+//                        Ordenacion por Peso
+//########################################################################
+bool Seleccion_peso ( texto f1, texto f2 ){
+	double p1,p2;
+	p1=f1.Get_P();
+	p2=f2.Get_P();
+	return (p1<p2);
+}
+//########################################################################
+//                      Ordenacion por Beneficio
+//########################################################################
+bool Seleccion_beneficio ( texto f1, texto f2 ){
+	int b1,b2;
+	b1=f1.Get_B();
+	b2=f2.Get_B();
+	return (b1>b2);
+}
+//########################################################################
+//               Ordenacion por relacion Beneficio/Peso
+//########################################################################
+bool Seleccion_relacion ( texto f1, texto f2 ){
+	double r1,r2;
+	r1=(f1.Get_B()/f1.Get_P());
+	r2=(f2.Get_B()/f2.Get_P());
+	return (r1>r2);
+}
+
+void Algoritmo_Voraz (){
+
+
+}
 
 int main(int argc, char *argv[]){
 
@@ -40,9 +70,22 @@ int main(int argc, char *argv[]){
   		return 0;
 	}
 
-		
+	int opcion = atoi (argv[5]);
 
-	switch (argv[5]){
+	char *joder("Quijote.txt");
+	char *puta("Makefile");
+	texto Prueba(joder, 10, 1220);
+	texto Prueba2(puta, 10, 859);
+
+
+	ficheros.push_back (Prueba);
+	ficheros.push_back (Prueba2);
+
+	//########################################################################	
+	//Ordenamos la lista dependiendo a lo que se pita por la linea de comandos
+	//########################################################################
+	
+	switch (opcion){
 		
 		case 1:
 			ficheros.sort(Seleccion_peso);
@@ -53,9 +96,10 @@ int main(int argc, char *argv[]){
 		case 3:
 			ficheros.sort(Seleccion_relacion);
 	}
-
 	
 
 
+
+	cout << ficheros << endl;
 
 }

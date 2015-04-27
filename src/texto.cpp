@@ -7,14 +7,3 @@ texto::~texto(){
 }
 
 
-char texto::Get_N (){
-	
-}
-
-int texto::Get_P (){
-
-}
-
-int texto::Get_B (){
-
-}
