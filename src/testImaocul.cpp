@@ -4,20 +4,17 @@
 #include <list>
 #include <stdlib.h>
 
-ostream & operator<<(ostream & s, texto t){
-	char *salida = t.Get_N();
-	s << salida;
-	return s;
-}
 
-ostream & operator<<(ostream & s, const list <texto> f){
+ostream & operator<<(ostream & s, const list <texto> &f){
 	int fin=f.size();
-	cout << fin << endl;
+	//s << fin << endl;
+	
 	list <texto> f2=f;
 	for (int i=0; i<fin;++i){
-		s << f2.front();
+		s << f2.front() << endl;
 		f2.pop_front();
 	}
+	
 	return s;
 
 }
@@ -72,21 +69,35 @@ int main(int argc, char *argv[]){
   		return 0;
 	}
 
-	int opcion = atoi (argv[5]);
-
+	int opcion = atoi (argv[4]);
+	/*
 	char *joder("Quijote.txt");
 	char *puta("Makefile");
+	char *jode("mergesort.cpp");
+	char *put("areas2010.txt");
+	char *p("jcr_eng_man_2010_ini.txt");
+	*/
+	char joder[]="Quijote.txt";
+	char puta[]="Makefile";
+	char jode[]="mergesort.cpp";
+	char put[]="areas2010.txt";
+	char p[]="jcr_eng_man_2010_ini.txt";
+
 	texto Prueba(joder, 10, 1220);
 	texto Prueba2(puta, 10, 859);
-
+	texto Prueba3 (jode, 100, 5990);
+	texto Prueba4(put, 200, 4293);
+	texto Prueba5(p, 250, 2968);
 
 	ficheros.push_back (Prueba);
+	ficheros.push_back (Prueba3);
+	ficheros.push_back (Prueba4);
+	ficheros.push_back (Prueba5);
 	ficheros.push_back (Prueba2);
-
 	//########################################################################	
 	//Ordenamos la lista dependiendo a lo que se pita por la linea de comandos
 	//########################################################################
-	
+	cout << opcion << endl;
 	switch (opcion){
 		
 		case 1:
@@ -101,7 +112,8 @@ int main(int argc, char *argv[]){
 	
 
 
-
-	cout << ficheros << endl;
+	//operator<<(cout,ficheros);
+	cout << ficheros ;
+	return 0;
 
 }

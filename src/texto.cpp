@@ -3,7 +3,7 @@
 
 
 texto::~texto(){
-	delete [] Nombre;
+	//delete [] Nombre;
 }
 
 

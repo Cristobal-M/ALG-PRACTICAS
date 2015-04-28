@@ -8,6 +8,9 @@
 #define __VD_H__
 
 #include <cassert>
+#include <iostream>
+
+using namespace std;
 
 class texto{
 	
@@ -15,6 +18,8 @@ class texto{
 		char *Nombre;
 		double Peso;
 		int Beneficio;
+
+		void escribe (ostream& out, char *N){ out << N ; }
 	
 	public:
 		//----------CONSTRUCTOR--------------
@@ -33,6 +38,8 @@ class texto{
 		int Get_B(){ return Beneficio; }
 		
 		char * Get_N() { return Nombre; }
+
+
 		
 		void Set (char *N, int B, double P) {
 			Nombre = N;
@@ -45,7 +52,11 @@ class texto{
 		void Set_P (double P) { Peso = P; }
 		
 		void Set_B (int B) { Beneficio = B; }
-	
+
+		friend ostream& operator<< (ostream& out,  texto &t){
+			t.escribe(out,t.Nombre);
+			return out;
+		}
 };
 
 #endif
