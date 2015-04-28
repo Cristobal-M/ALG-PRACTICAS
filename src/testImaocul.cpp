@@ -5,17 +5,19 @@
 #include <stdlib.h>
 
 ostream & operator<<(ostream & s, texto t){
-	
-	s << t.Get_N();
+	char *salida = t.Get_N();
+	s << salida;
 	return s;
 }
 
 ostream & operator<<(ostream & s, const list <texto> f){
 	int fin=f.size();
+	cout << fin << endl;
 	list <texto> f2=f;
-	for (int i=0; i<fin;++i)
+	for (int i=0; i<fin;++i){
 		s << f2.front();
 		f2.pop_front();
+	}
 	return s;
 
 }
