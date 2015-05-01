@@ -43,7 +43,6 @@ void cargarDatosFicheros(char *rutaFichero,char *dir,list<texto> &lista){
 		lista.push_back(*t);
 	}
 }
-
 //########################################################################
 //                        Variables globales
 //########################################################################
@@ -51,7 +50,6 @@ list <texto> ficheros;
 list <texto> solucion;
 Imagen imagen;
 int espacio;
-
 //########################################################################
 //                        Ordenacion por Peso
 //########################################################################
@@ -137,56 +135,24 @@ int main(int argc, char *argv[]){
 	cout<<"\n##########################################################################\n";
 	cout<<"Capacidad total: "<<espacio<<endl;
 	int opcion = atoi (argv[4]);
-	/*
-	char *joder("Quijote.txt");
-	char *puta("Makefile");
-	char *jode("mergesort.cpp");
-	char *put("areas2010.txt");
-	char *p("jcr_eng_man_2010_ini.txt");
-	
-	char joder[]="Quijote.txt";
-	char puta[]="Makefile";
-	char jode[]="mergesort.cpp";
-	char put[]="areas2010.txt";
-	char p[]="jcr_eng_man_2010_ini.txt";
 
-	texto Prueba(joder, 10, 1220);
-	texto Prueba2(puta, 10, 859);
-	texto Prueba3 (jode, 100, 5990);
-	texto Prueba4(put, 200, 4293);
-	texto Prueba5(p, 250, 2968);
-
-	ficheros.push_back (Prueba);
-	ficheros.push_back (Prueba3);
-	ficheros.push_back (Prueba4);
-	ficheros.push_back (Prueba5);
-	ficheros.push_back (Prueba2);
-
-
-	char *fi=CargaFichero(argv[2]);
-	cout << fi << endl;
-	
-	//########################################################################	
-	//Ordenamos la lista dependiendo a lo que se pita por la linea de comandos
-	//########################################################################
-	switch (opcion){
-		
-		case 1:
-			ficheros.sort(Seleccion_peso);
-			break;
-		case 2:
-			ficheros.sort(Seleccion_beneficio);
-			break;
-		case 3:
-			ficheros.sort(Seleccion_relacion);
-	}
-	*/
 
 	Algoritmo_Voraz(opcion);
 	cout << solucion << endl;
 
-	//operator<<(cout,ficheros);
-	//cout << ficheros ;
+	
+	int numero = solucion.size();
+	int i=0;
+	char **mensaje=new char*[numero];
+
+	for (std::list<texto>::iterator it=solucion.begin(); it != solucion.end(); ++it){
+		mensaje[i]= (char *)alloca((*it).Get_N().size() + 1);
+		i++;
+	}
+
+	Ocultar (imagen, mensaje, numero);
+	imagen.EscribirImagen("Voraz.pgm");
+
 	return 0;
 
 }
