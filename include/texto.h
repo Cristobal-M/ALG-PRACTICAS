@@ -23,7 +23,14 @@ class texto{
 	
 	public:
 		//----------CONSTRUCTOR--------------
+		texto(){
+		}
 		texto(char *N, int B, double P){
+			Nombre = N;
+			Peso = P;
+			Beneficio = B;
+		}
+		void set(char *N, int B, double P){
 			Nombre = N;
 			Peso = P;
 			Beneficio = B;

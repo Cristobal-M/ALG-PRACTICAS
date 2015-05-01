@@ -18,7 +18,25 @@ ostream & operator<<(ostream & s, const list <texto> &f){
 	return s;
 
 }
-
+void cargarDatosFicheros(char *rutaFichero,char *dir,list<texto> &lista){
+	lista.resize(0);
+	ifstream fi (rutaFichero);
+	char *f=new char[100];
+	char *b=new char[100];
+	char *p=new char[100];
+	//Sacamos los tres primeros
+	fi>>p;
+	fi>>p;
+	fi>>p;
+	while(!fi.eof()){
+		fi>>f;
+		fi>>b;
+		fi>>p;
+		texto *t=new texto(f, atoi(b), atof(p));
+		lista.push_back(*t);
+		cout<<*t<<endl;
+	}
+}
 
 
 list <texto> ficheros;
@@ -69,6 +87,9 @@ int main(int argc, char *argv[]){
   		return 0;
 	}
 
+	cargarDatosFicheros(argv[2],argv[3],ficheros);
+//cout << ficheros << endl;
+return 1;
 	int opcion = atoi (argv[4]);
 	/*
 	char *joder("Quijote.txt");
