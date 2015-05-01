@@ -7,7 +7,10 @@
 
 ostream & operator<<(ostream & s, const list <texto> &f){
 	//s << fin << endl;
-	
+	s <<std::setw(50)<<std::left<< "Ruta" 
+			<<std::setw(10)<<std::left<<"Beneficio"
+			<<std::setw(10)<<std::left<<"Peso"
+			<<endl; 
 	list <texto> f2=f;
 	while(!f2.empty()){
 		s << f2.front() << endl;
@@ -41,8 +44,12 @@ void cargarDatosFicheros(char *rutaFichero,char *dir,list<texto> &lista){
 	}
 }
 
-
+//########################################################################
+//                        Variables globales
+//########################################################################
 list <texto> ficheros;
+Imagen imagen;
+int espacio;
 
 //########################################################################
 //                        Ordenacion por Peso
@@ -89,10 +96,15 @@ int main(int argc, char *argv[]){
   		cout<<"6.- C para completos y P para parciales"<<endl;
   		return 0;
 	}
+	//Leemos la imagen
+	imagen.LeerImagen(argv[1]);
+	//Espacio disponible, recordar que el peso de cada fichero es +1
+	espacio=imagen.num_filas()*imagen.num_cols()-1;
 
 	cargarDatosFicheros(argv[2],argv[3],ficheros);
-cout << ficheros << endl;
-cout<<endl;
+	cout<<"Ficheros:"<<endl;
+	cout << ficheros << endl;
+	cout<<endl;
 	int opcion = atoi (argv[4]);
 	/*
 	char *joder("Quijote.txt");

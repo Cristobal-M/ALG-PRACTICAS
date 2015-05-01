@@ -9,6 +9,7 @@
 
 #include <cassert>
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -19,7 +20,11 @@ class texto{
 		double Peso;
 		int Beneficio;
 
-		void escribe (ostream& out, string N, int B, double P){ out << N <<"\t"<<P<<"\t"<<B; }
+		void escribe (ostream& out, string N, int B, double P){ 
+			out <<std::setw(50)<<std::left<< N 
+			<<std::setw(10)<<std::left<<B
+			<<std::setw(10)<<std::left<<P; 
+		}
 	
 	public:
 		//----------CONSTRUCTOR--------------
@@ -56,7 +61,7 @@ class texto{
 		void Set_B (int B) { Beneficio = B; }
 
 		friend ostream& operator<< (ostream& out,  texto &t){
-			t.escribe(out,t.Nombre,t.Peso,t.Beneficio);
+			t.escribe(out,t.Nombre,t.Beneficio,t.Peso);
 			return out;
 		}
 };
