@@ -56,7 +56,8 @@ void Algoritmo_Memoria_Dinamica (vector<texto> &solucion, vector<texto> objs, in
 	}
 
 	for (int i = 1; i < (int)V.size(); ++i){
-		int p=objs[i-1].Get_P();
+		//+1 -> peso extra por el \0
+		int p=objs[i-1].Get_P()+1;
 		int b=objs[i-1].Get_B();
 		for (int j = 1; j < (int)V[0].size(); ++j){
 			int v1,v2;
@@ -93,7 +94,7 @@ int main(int argc, char *argv[]){
 	if (argc<4 ){
 		cout<<"Los parametros son:"<<endl;
   		cout<<"1.- Ejecutable "<<endl;
-	  	cout<<"2.- La imagen donde ocultarr"<<endl;
+	  	cout<<"2.- La imagen donde ocultar"<<endl;
   		cout<<"3.- El fichero .txt"<<endl;
   		cout<<"4.- Carpeta donde se encuentran los ficheros"<<endl;
   		return 0;
@@ -118,8 +119,14 @@ int main(int argc, char *argv[]){
 
 	cout << solucion << endl;
 
-	//operator<<(cout,ficheros);
-	//cout << ficheros ;
-	return 0;
+	int numero = solucion.size();
+	char **mensaje=new char*[numero];
 
+	for (unsigned i=0; i < solucion.size(); ++i){
+		mensaje[i]= CargaFichero( solucion[i].Get_N().c_str() );
+		i++;
+	}
+
+	Ocultar (imagen, mensaje, numero);
+	imagen.EscribirImagen("Voraz.pgm");
 }

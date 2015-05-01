@@ -145,7 +145,8 @@ int main(int argc, char *argv[]){
 	char **mensaje=new char*[numero];
 
 	for (std::list<texto>::iterator it=solucion.begin(); it != solucion.end(); ++it){
-		mensaje[i]= (char *)alloca((*it).Get_N().size() + 1);
+		//mensaje[i]= (char *)alloca((*it).Get_N().size() + 1);
+		mensaje[i]= CargaFichero( (*it).Get_N().c_str() );
 		i++;
 	}
 

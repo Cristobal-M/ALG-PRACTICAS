@@ -60,10 +60,7 @@ class texto{
 		
 		void Set_B (int B) { Beneficio = B; }
 
-		friend ostream& operator<< (ostream& out,  texto &t){
-			t.escribe(out);
-			return out;
-		}
+		
 		friend ostream& operator<< (ostream& out, const texto &t){
 			out <<std::setw(50)<<std::left<< t.Nombre 
 			<<std::setw(10)<<std::left<<t.Beneficio
