@@ -10,7 +10,7 @@ ostream & operator<<(ostream & s, const list <texto> &f){
 	//s << fin << endl;
 	
 	list <texto> f2=f;
-	for (int i=0; i<fin;++i){
+	while(!f2.empty()){
 		s << f2.front() << endl;
 		f2.pop_front();
 	}
@@ -93,7 +93,7 @@ int main(int argc, char *argv[]){
 	}
 
 	cargarDatosFicheros(argv[2],argv[3],ficheros);
-//cout << ficheros << endl;
+cout << ficheros << endl;
 return 1;
 	int opcion = atoi (argv[4]);
 	/*
