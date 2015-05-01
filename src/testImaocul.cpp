@@ -3,7 +3,7 @@
 #include "texto.h"
 #include <list>
 #include <stdlib.h>
-
+#include <climits>
 
 ostream & operator<<(ostream & s, const list <texto> &f){
 	//s << fin << endl;
@@ -112,7 +112,6 @@ void Algoritmo_Voraz (int opcion){
 }
 
 int main(int argc, char *argv[]){
-
 	if (argc<6 ){
 		cout<<"Los parametros son:"<<endl;
   		cout<<"1.- Ejecutable "<<endl;

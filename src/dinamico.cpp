@@ -3,7 +3,8 @@
 #include "texto.h"
 #include <list>
 #include <stdlib.h>
-
+#include <climits>
+#include <vector>
 
 ostream & operator<<(ostream & s, const vector <texto> &f){
 	//s << fin << endl;
@@ -11,9 +12,9 @@ ostream & operator<<(ostream & s, const vector <texto> &f){
 			<<std::setw(10)<<std::left<<"Beneficio"
 			<<std::setw(10)<<std::left<<"Peso"
 			<<endl;
-	for (int i = 0; i < f.size(); ++i)
+	for (int i = 0; i < (int)f.size(); ++i)
 	{
-		s << f[i] << endl;
+		s << (texto)f.at(i) << endl;
 	}
 	
 	return s;
@@ -40,48 +41,69 @@ void cargarDatosFicheros(char *rutaFichero,char *dir,vector<texto> &lista){
 }
 
 
-void Algoritmo_Memoria_Dinamica (vector<Texto> &solucion, vector<Texto> obj, int capacidad){
+void Algoritmo_Memoria_Dinamica (vector<texto> &solucion, vector<texto> objs, int capacidad){
 	solucion.resize(0);
-	//por si se hace fraccionado lo pongo float
-	vector<vector<float> > V(obj.size()+1, vector<float>(capacidad) +1);
+	vector<vector<int> > V(objs.size()+1, vector<int>(capacidad+1) );
+
 	//inicializamos la matriz
-	for (int i = 0; i < V.size(); ++i){
+	for (int i = 0; i < (int)V.size(); ++i){
 		//Primera columna 0 de capacidad
 		V[i][0]=0;
 	}
-	for (int i = 0; i < V[0].size(); ++i){
+	for (int i = 0; i < (int)V[0].size(); ++i){
 		//Primera fila 0 objetos =0
 		V[0][i]=0;
 	}
 
-		
-	for (int i = 0; i < count; ++i)
-	{
-		for (int j = 0; j < count; ++j)
-		{
-			/* code */
+	for (int i = 1; i < (int)V.size(); ++i){
+		int p=objs[i-1].Get_P();
+		int b=objs[i-1].Get_B();
+		for (int j = 1; j < (int)V[0].size(); ++j){
+			int v1,v2;
+			//Menos infinito
+			v1=v2=-INT_MAX;
+			//Si se salen de rango se queda infinito
+			if((i-1)>=0)
+				v1=V[i-1][j];
+			if((i-1)>=0 && (j-p)>=0)
+				v2=V[i-1][j-p]+b;
+			V[i][j]=std::max(v1,v2);
 		}
+	}
+//cout<<"jajajajajajajjajajajajaja"<<V.size()-1<<endl<<flush;
+	//Componemos la solucion
+	int j=(int)V[0].size()-1;
+	for (int i = (int)V.size()-1; i >= 1; --i){
+//		cout<<"jajajajajajajjajajajajaja"<<i<<"ja"<<endl<<flush;
+		int p=objs[i-1].Get_P();
+		int b=objs[i-1].Get_B();
+		if((j-p)>=0 && i-1>=0 && V[i][j]==V[i-1][j-p]+b){
+			solucion.push_back(objs[i-1]);
+			j=j-p;
+		}
+
+		if( (i-1)>=0 && V[i][j]==V[i-1][j])
+			j--;
 	}
 	
 }
 
 int main(int argc, char *argv[]){
 
-	if (argc<6 ){
+	if (argc<4 ){
 		cout<<"Los parametros son:"<<endl;
   		cout<<"1.- Ejecutable "<<endl;
 	  	cout<<"2.- La imagen donde ocultarr"<<endl;
   		cout<<"3.- El fichero .txt"<<endl;
   		cout<<"4.- Carpeta donde se encuentran los ficheros"<<endl;
-  		cout<<"5.- Un numero entre el 1 al 3"<<endl;
-  		cout<<"6.- C para completos y P para parciales"<<endl;
   		return 0;
 	}
-
+	Imagen imagen;
+	vector<texto> ficheros,solucion;
 	//Leemos la imagen
 	imagen.LeerImagen(argv[1]);
 	//Espacio disponible, recordar que el peso de cada fichero es +1
-	espacio=imagen.num_filas()*imagen.num_cols()-1;
+	int espacio=(imagen.num_filas()*imagen.num_cols()/8)-1;
 
 	cargarDatosFicheros(argv[2],argv[3],ficheros);
 	
@@ -89,55 +111,11 @@ int main(int argc, char *argv[]){
 	cout<<"Ficheros:"<<endl;
 	cout << ficheros << endl;
 
+	Algoritmo_Memoria_Dinamica (solucion, ficheros, espacio);
+
 	cout<<"\n##########################################################################\n";
 	cout<<"Capacidad total: "<<espacio<<endl;
-	int opcion = atoi (argv[4]);
-	/*
-	char *joder("Quijote.txt");
-	char *puta("Makefile");
-	char *jode("mergesort.cpp");
-	char *put("areas2010.txt");
-	char *p("jcr_eng_man_2010_ini.txt");
-	
-	char joder[]="Quijote.txt";
-	char puta[]="Makefile";
-	char jode[]="mergesort.cpp";
-	char put[]="areas2010.txt";
-	char p[]="jcr_eng_man_2010_ini.txt";
 
-	texto Prueba(joder, 10, 1220);
-	texto Prueba2(puta, 10, 859);
-	texto Prueba3 (jode, 100, 5990);
-	texto Prueba4(put, 200, 4293);
-	texto Prueba5(p, 250, 2968);
-
-	ficheros.push_back (Prueba);
-	ficheros.push_back (Prueba3);
-	ficheros.push_back (Prueba4);
-	ficheros.push_back (Prueba5);
-	ficheros.push_back (Prueba2);
-
-
-	char *fi=CargaFichero(argv[2]);
-	cout << fi << endl;
-	
-	//########################################################################	
-	//Ordenamos la lista dependiendo a lo que se pita por la linea de comandos
-	//########################################################################
-	switch (opcion){
-		
-		case 1:
-			ficheros.sort(Seleccion_peso);
-			break;
-		case 2:
-			ficheros.sort(Seleccion_beneficio);
-			break;
-		case 3:
-			ficheros.sort(Seleccion_relacion);
-	}
-	*/
-
-	Algoritmo_Voraz(opcion);
 	cout << solucion << endl;
 
 	//operator<<(cout,ficheros);

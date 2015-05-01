@@ -6,7 +6,7 @@ CXX = g++
 CPPFLAGS = -Wall -g  -I$(INC) -c
 
 
-all:$(BIN)/testocultar $(BIN)/testrevelar $(BIN)/Prueba
+all:$(BIN)/testocultar $(BIN)/testrevelar $(BIN)/Prueba $(BIN)/dinamico
 
 # ************ Generación de documentación ******************
 documentacion:

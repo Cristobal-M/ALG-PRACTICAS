@@ -20,10 +20,10 @@ class texto{
 		double Peso;
 		int Beneficio;
 
-		void escribe (ostream& out, string N, int B, double P){ 
-			out <<std::setw(50)<<std::left<< N 
-			<<std::setw(10)<<std::left<<B
-			<<std::setw(10)<<std::left<<P; 
+		void escribe (ostream& out){ 
+			out <<std::setw(50)<<std::left<< Nombre 
+			<<std::setw(10)<<std::left<<Beneficio
+			<<std::setw(10)<<std::left<<Peso; 
 		}
 	
 	public:
@@ -61,7 +61,13 @@ class texto{
 		void Set_B (int B) { Beneficio = B; }
 
 		friend ostream& operator<< (ostream& out,  texto &t){
-			t.escribe(out,t.Nombre,t.Beneficio,t.Peso);
+			t.escribe(out);
+			return out;
+		}
+		friend ostream& operator<< (ostream& out, const texto &t){
+			out <<std::setw(50)<<std::left<< t.Nombre 
+			<<std::setw(10)<<std::left<<t.Beneficio
+			<<std::setw(10)<<std::left<<t.Peso; 
 			return out;
 		}
 };
