@@ -48,6 +48,7 @@ void cargarDatosFicheros(char *rutaFichero,char *dir,list<texto> &lista){
 //                        Variables globales
 //########################################################################
 list <texto> ficheros;
+list <texto> solucion;
 Imagen imagen;
 int espacio;
 
@@ -78,10 +79,36 @@ bool Seleccion_relacion ( texto f1, texto f2 ){
 	r2=(f2.Get_B()/f2.Get_P());
 	return (r1>r2);
 }
+//########################################################################
+//               Funcion factible
+//########################################################################
+bool Factible (texto &S, list<texto> &X ){
+	double ocupado=0;
+	for (std::list<texto>::iterator it=X.begin(); it != X.end(); ++it){
+		ocupado+=(*it).Get_P()+1;
+	}
+	ocupado+=S.Get_P()+1;
+	return (ocupado<=espacio);
+}
 
-void Algoritmo_Voraz (){
-
-
+void Algoritmo_Voraz (int opcion){
+	solucion.resize(0);
+	switch (opcion){	
+		case 1:
+			ficheros.sort(Seleccion_peso);
+			break;
+		case 2:
+			ficheros.sort(Seleccion_beneficio);
+			break;
+		case 3:
+			ficheros.sort(Seleccion_relacion);
+	}
+	for (std::list<texto>::iterator it=ficheros.begin(); it != ficheros.end(); ++it){
+		//solucion.push_back(*it);
+		if(Factible(*it,solucion)){
+			solucion.push_back(*it);
+		}
+	}
 }
 
 int main(int argc, char *argv[]){
@@ -102,9 +129,13 @@ int main(int argc, char *argv[]){
 	espacio=imagen.num_filas()*imagen.num_cols()-1;
 
 	cargarDatosFicheros(argv[2],argv[3],ficheros);
+	
+	cout<<"Imagen en la que ocultar: "<<argv[1]<<endl;
 	cout<<"Ficheros:"<<endl;
 	cout << ficheros << endl;
-	cout<<endl;
+
+	cout<<"\n##########################################################################\n";
+	cout<<"Capacidad total: "<<espacio<<endl;
 	int opcion = atoi (argv[4]);
 	/*
 	char *joder("Quijote.txt");
@@ -134,7 +165,7 @@ int main(int argc, char *argv[]){
 
 	char *fi=CargaFichero(argv[2]);
 	cout << fi << endl;
-	*/
+	
 	//########################################################################	
 	//Ordenamos la lista dependiendo a lo que se pita por la linea de comandos
 	//########################################################################
@@ -149,8 +180,10 @@ int main(int argc, char *argv[]){
 		case 3:
 			ficheros.sort(Seleccion_relacion);
 	}
-	
-	cout << ficheros << endl;
+	*/
+
+	Algoritmo_Voraz(opcion);
+	cout << solucion << endl;
 
 	//operator<<(cout,ficheros);
 	//cout << ficheros ;
