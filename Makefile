@@ -6,7 +6,7 @@ CXX = g++
 CPPFLAGS = -Wall -g  -I$(INC) -c
 
 
-all:$(BIN)/testocultar $(BIN)/testrevelar $(BIN)/Prueba $(BIN)/dinamico
+all:$(BIN)/testocultar $(BIN)/testrevelar $(BIN)/voraz $(BIN)/dinamico
 
 # ************ Generación de documentación ******************
 documentacion:
@@ -32,14 +32,14 @@ $(BIN)/testocultar: $(OBJ)/testocultar.o $(OBJ)/imagen.o $(OBJ)/imagenES.o $(OBJ
 $(BIN)/testrevelar: $(OBJ)/testrevelar.o $(OBJ)/imagen.o $(OBJ)/imagenES.o $(OBJ)/utilidades.o
 	$(CXX) -o $(BIN)/testrevelar  $(OBJ)/testrevelar.o $(OBJ)/imagen.o $(OBJ)/utilidades.o $(OBJ)/imagenES.o	
 	
-$(BIN)/Prueba: $(OBJ)/Prueba.o $(OBJ)/imagen.o $(OBJ)/imagenES.o $(OBJ)/utilidades.o $(OBJ)/texto.o
-	$(CXX) -o $(BIN)/Prueba $(OBJ)/Prueba.o $(OBJ)/imagen.o $(OBJ)/imagenES.o $(OBJ)/utilidades.o $(OBJ)/texto.o
+$(BIN)/voraz: $(OBJ)/voraz.o $(OBJ)/imagen.o $(OBJ)/imagenES.o $(OBJ)/utilidades.o $(OBJ)/texto.o
+	$(CXX) -o $(BIN)/voraz $(OBJ)/voraz.o $(OBJ)/imagen.o $(OBJ)/imagenES.o $(OBJ)/utilidades.o $(OBJ)/texto.o
 $(BIN)/dinamico: $(OBJ)/dinamico.o $(OBJ)/imagen.o $(OBJ)/imagenES.o $(OBJ)/utilidades.o $(OBJ)/texto.o
 	$(CXX) -o $(BIN)/dinamico $(OBJ)/dinamico.o $(OBJ)/imagen.o $(OBJ)/imagenES.o $(OBJ)/utilidades.o $(OBJ)/texto.o
 
 
-$(OBJ)/Prueba.o: $(SRC)/testImaocul.cpp $(INC)/imagen.h $(INC)/utilidades.h $(INC)/texto.h	
-	$(CXX) $(CPPFLAGS) $(SRC)/testImaocul.cpp -o $(OBJ)/Prueba.o	
+$(OBJ)/voraz.o: $(SRC)/voraz.cpp $(INC)/imagen.h $(INC)/utilidades.h $(INC)/texto.h	
+	$(CXX) $(CPPFLAGS) $(SRC)/voraz.cpp -o $(OBJ)/voraz.o	
 $(OBJ)/dinamico.o: $(SRC)/dinamico.cpp $(INC)/imagen.h $(INC)/utilidades.h $(INC)/texto.h	
 	$(CXX) $(CPPFLAGS) $(SRC)/dinamico.cpp -o $(OBJ)/dinamico.o	
 	
