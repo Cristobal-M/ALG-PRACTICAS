@@ -50,6 +50,7 @@ list <texto> ficheros;
 list <texto> solucion;
 Imagen imagen;
 int espacio;
+int m =0;
 //########################################################################
 //                        Ordenacion por Peso
 //########################################################################
@@ -89,8 +90,9 @@ bool Factible (texto &S, list<texto> &X ){
 	return (ocupado<=espacio);
 }
 
-void Algoritmo_Voraz (int opcion){
+void Algoritmo_Voraz (int opcion , string capa){
 	solucion.resize(0);
+	
 	switch (opcion){	
 		case 1:
 			ficheros.sort(Seleccion_peso);
@@ -105,6 +107,11 @@ void Algoritmo_Voraz (int opcion){
 		//solucion.push_back(*it);
 		if(Factible(*it,solucion)){
 			solucion.push_back(*it);
+		}else{ 
+			if(capa == "P" && m == 0){
+				solucion.push_back(*it);
+				m++;
+			}
 		}
 	}
 }
@@ -134,19 +141,17 @@ int main(int argc, char *argv[]){
 	cout<<"\n##########################################################################\n";
 	cout<<"Capacidad total: "<<espacio<<endl;
 	int opcion = atoi (argv[4]);
+	string Capa = argv[5];
 
+	Algoritmo_Voraz(opcion,Capa);
 
-	Algoritmo_Voraz(opcion);
 	cout << solucion << endl;
-
-	
 	int numero = solucion.size();
 	int i=0;
 	char **mensaje=new char*[numero];
 
 	for (std::list<texto>::iterator it=solucion.begin(); it != solucion.end(); ++it){
-		//mensaje[i]= (char *)alloca((*it).Get_N().size() + 1);
-		mensaje[i]= CargaFichero( (*it).Get_N().c_str() );
+		mensaje[i]= CargaFichero((*it).Get_N().c_str());
 		i++;
 	}
 
