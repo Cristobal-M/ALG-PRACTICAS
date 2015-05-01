@@ -21,9 +21,13 @@ ostream & operator<<(ostream & s, const list <texto> &f){
 void cargarDatosFicheros(char *rutaFichero,char *dir,list<texto> &lista){
 	lista.resize(0);
 	ifstream fi (rutaFichero);
+	/*
 	char *f=new char[100];
 	char *b=new char[100];
 	char *p=new char[100];
+	*/
+	string f,b,p;
+	string directorio(dir);
 	//Sacamos los tres primeros
 	fi>>p;
 	fi>>p;
@@ -32,7 +36,8 @@ void cargarDatosFicheros(char *rutaFichero,char *dir,list<texto> &lista){
 		fi>>f;
 		fi>>b;
 		fi>>p;
-		texto *t=new texto(f, atoi(b), atof(p));
+
+		texto *t=new texto((directorio+f).c_str(), atoi(b.c_str()), atof(p.c_str()));
 		lista.push_back(*t);
 		cout<<*t<<endl;
 	}
