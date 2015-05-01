@@ -126,7 +126,7 @@ int main(int argc, char *argv[]){
 	//Leemos la imagen
 	imagen.LeerImagen(argv[1]);
 	//Espacio disponible, recordar que el peso de cada fichero es +1
-	espacio=imagen.num_filas()*imagen.num_cols()-1;
+	espacio=(imagen.num_filas()*imagen.num_cols()/8)-1;
 
 	cargarDatosFicheros(argv[2],argv[3],ficheros);
 	

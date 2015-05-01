@@ -34,12 +34,15 @@ $(BIN)/testrevelar: $(OBJ)/testrevelar.o $(OBJ)/imagen.o $(OBJ)/imagenES.o $(OBJ
 	
 $(BIN)/Prueba: $(OBJ)/Prueba.o $(OBJ)/imagen.o $(OBJ)/imagenES.o $(OBJ)/utilidades.o $(OBJ)/texto.o
 	$(CXX) -o $(BIN)/Prueba $(OBJ)/Prueba.o $(OBJ)/imagen.o $(OBJ)/imagenES.o $(OBJ)/utilidades.o $(OBJ)/texto.o
-
+$(BIN)/dinamico: $(OBJ)/dinamico.o $(OBJ)/imagen.o $(OBJ)/imagenES.o $(OBJ)/utilidades.o $(OBJ)/texto.o
+	$(CXX) -o $(BIN)/dinamico $(OBJ)/dinamico.o $(OBJ)/imagen.o $(OBJ)/imagenES.o $(OBJ)/utilidades.o $(OBJ)/texto.o
 
 
 $(OBJ)/Prueba.o: $(SRC)/testImaocul.cpp $(INC)/imagen.h $(INC)/utilidades.h $(INC)/texto.h	
 	$(CXX) $(CPPFLAGS) $(SRC)/testImaocul.cpp -o $(OBJ)/Prueba.o	
-
+$(OBJ)/dinamico.o: $(SRC)/dinamico.cpp $(INC)/imagen.h $(INC)/utilidades.h $(INC)/texto.h	
+	$(CXX) $(CPPFLAGS) $(SRC)/dinamico.cpp -o $(OBJ)/dinamico.o	
+	
 	
 $(OBJ)/utilidades.o: $(SRC)/utilidades.cpp $(INC)/imagen.h $(INC)/utilidades.h 
 	$(CXX) $(CPPFLAGS) $(SRC)/utilidades.cpp -o $(OBJ)/utilidades.o	
