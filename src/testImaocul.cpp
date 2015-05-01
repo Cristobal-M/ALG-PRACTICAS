@@ -36,8 +36,8 @@ void cargarDatosFicheros(char *rutaFichero,char *dir,list<texto> &lista){
 		fi>>f;
 		fi>>b;
 		fi>>p;
-
-		texto *t=new texto((directorio+f).c_str(), atoi(b.c_str()), atof(p.c_str()));
+		f=directorio+f;
+		texto *t=new texto(f, atoi(b.c_str()), atof(p.c_str()));
 		lista.push_back(*t);
 		cout<<*t<<endl;
 	}

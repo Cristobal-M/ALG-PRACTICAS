@@ -15,22 +15,17 @@ using namespace std;
 class texto{
 	
 	private:
-		char *Nombre;
+		string Nombre;
 		double Peso;
 		int Beneficio;
 
-		void escribe (ostream& out, char *N){ out << N ; }
+		void escribe (ostream& out, string N, int B, double P){ out << N <<"\t"<<P<<"\t"<<B; }
 	
 	public:
 		//----------CONSTRUCTOR--------------
 		texto(){
 		}
-		texto(char *N, int B, double P){
-			Nombre = N;
-			Peso = P;
-			Beneficio = B;
-		}
-		void set(char *N, int B, double P){
+		texto(string N, int B, double P){
 			Nombre = N;
 			Peso = P;
 			Beneficio = B;
@@ -44,11 +39,11 @@ class texto{
 		
 		int Get_B(){ return Beneficio; }
 		
-		char * Get_N() { return Nombre; }
+		string Get_N() { return Nombre; }
 
 
 		
-		void Set (char *N, int B, double P) {
+		void Set (string N, int B, double P) {
 			Nombre = N;
 			Peso = P;
 			Beneficio = B;
@@ -61,7 +56,7 @@ class texto{
 		void Set_B (int B) { Beneficio = B; }
 
 		friend ostream& operator<< (ostream& out,  texto &t){
-			t.escribe(out,t.Nombre);
+			t.escribe(out,t.Nombre,t.Peso,t.Beneficio);
 			return out;
 		}
 };
