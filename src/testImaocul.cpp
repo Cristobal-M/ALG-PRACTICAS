@@ -94,10 +94,13 @@ int main(int argc, char *argv[]){
 	ficheros.push_back (Prueba4);
 	ficheros.push_back (Prueba5);
 	ficheros.push_back (Prueba2);
+
+
+	char *fi=CargaFichero(argv[2]);
+	cout << fi << endl;
 	//########################################################################	
 	//Ordenamos la lista dependiendo a lo que se pita por la linea de comandos
 	//########################################################################
-	cout << opcion << endl;
 	switch (opcion){
 		
 		case 1:
@@ -113,7 +116,7 @@ int main(int argc, char *argv[]){
 
 
 	//operator<<(cout,ficheros);
-	cout << ficheros ;
+	//cout << ficheros ;
 	return 0;
 
 }
