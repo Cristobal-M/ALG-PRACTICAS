@@ -6,7 +6,6 @@
 
 
 ostream & operator<<(ostream & s, const list <texto> &f){
-	int fin=f.size();
 	//s << fin << endl;
 	
 	list <texto> f2=f;
@@ -39,7 +38,6 @@ void cargarDatosFicheros(char *rutaFichero,char *dir,list<texto> &lista){
 		f=directorio+f;
 		texto *t=new texto(f, atoi(b.c_str()), atof(p.c_str()));
 		lista.push_back(*t);
-		cout<<*t<<endl;
 	}
 }
 
@@ -94,7 +92,7 @@ int main(int argc, char *argv[]){
 
 	cargarDatosFicheros(argv[2],argv[3],ficheros);
 cout << ficheros << endl;
-return 1;
+cout<<endl;
 	int opcion = atoi (argv[4]);
 	/*
 	char *joder("Quijote.txt");
@@ -102,7 +100,7 @@ return 1;
 	char *jode("mergesort.cpp");
 	char *put("areas2010.txt");
 	char *p("jcr_eng_man_2010_ini.txt");
-	*/
+	
 	char joder[]="Quijote.txt";
 	char puta[]="Makefile";
 	char jode[]="mergesort.cpp";
@@ -124,6 +122,7 @@ return 1;
 
 	char *fi=CargaFichero(argv[2]);
 	cout << fi << endl;
+	*/
 	//########################################################################	
 	//Ordenamos la lista dependiendo a lo que se pita por la linea de comandos
 	//########################################################################
@@ -139,7 +138,7 @@ return 1;
 			ficheros.sort(Seleccion_relacion);
 	}
 	
-
+	cout << ficheros << endl;
 
 	//operator<<(cout,ficheros);
 	//cout << ficheros ;
