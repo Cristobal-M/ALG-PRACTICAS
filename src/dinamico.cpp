@@ -109,7 +109,7 @@ int main(int argc, char *argv[]){
 	int espacio=(imagen.num_filas()*imagen.num_cols()/8)-1;
 
 	cargarDatosFicheros(argv[2],argv[3],ficheros);
-	if(argc==5){
+	if(argc==4){
 		cout<<"Imagen en la que ocultar: "<<argv[1]<<endl;
 		cout<<"Ficheros:"<<endl;
 		cout << ficheros << endl;
@@ -127,7 +127,7 @@ int main(int argc, char *argv[]){
 	duration<double> transcurrido = duration_cast<duration<double>>(tDespues - tAntes);
 	printf("%d %f\n",(int)ficheros.size(),transcurrido.count());
 
-	if(argc==5){
+	if(argc==4){
 		cout<<"\n##########################################################################\n";
 		cout<<"Capacidad total: "<<espacio<<endl;
 		cout << solucion << endl;
@@ -138,9 +138,8 @@ int main(int argc, char *argv[]){
 
 	for (unsigned i=0; i < solucion.size(); ++i){
 		mensaje[i]= CargaFichero( solucion[i].Get_N().c_str() );
-		i++;
 	}
 
 	Ocultar (imagen, mensaje, numero);
-	imagen.EscribirImagen("Voraz.pgm");
+	imagen.EscribirImagen("dinamico.pgm");
 }
