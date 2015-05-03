@@ -73,11 +73,9 @@ void Algoritmo_Memoria_Dinamica (vector<texto> &solucion, vector<texto> objs, in
 			V[i][j]=std::max(v1,v2);
 		}
 	}
-//cout<<"jajajajajajajjajajajajaja"<<V.size()-1<<endl<<flush;
 	//Componemos la solucion
 	int j=(int)V[0].size()-1;
 	for (int i = (int)V.size()-1; i >= 1; --i){
-//		cout<<"jajajajajajajjajajajajaja"<<i<<"ja"<<endl<<flush;
 		int p=objs[i-1].Get_P();
 		int b=objs[i-1].Get_B();
 		if((j-p)>=0 && i-1>=0 && V[i][j]==V[i-1][j-p]+b){
