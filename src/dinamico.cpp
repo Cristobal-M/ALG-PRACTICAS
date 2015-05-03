@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <climits>
 #include <vector>
+#include <chrono>
+using namespace std::chrono;
 
 ostream & operator<<(ostream & s, const vector <texto> &f){
 	//s << fin << endl;
@@ -107,17 +109,29 @@ int main(int argc, char *argv[]){
 	int espacio=(imagen.num_filas()*imagen.num_cols()/8)-1;
 
 	cargarDatosFicheros(argv[2],argv[3],ficheros);
-	
-	cout<<"Imagen en la que ocultar: "<<argv[1]<<endl;
-	cout<<"Ficheros:"<<endl;
-	cout << ficheros << endl;
-
+	if(argc==5){
+		cout<<"Imagen en la que ocultar: "<<argv[1]<<endl;
+		cout<<"Ficheros:"<<endl;
+		cout << ficheros << endl;
+	}
+	/*********************************************
+	*INICIO DEL ALGORITMO
+	*********************************************/
+	high_resolution_clock::time_point tAntes, tDespues;
+	tAntes = high_resolution_clock::now();
 	Algoritmo_Memoria_Dinamica (solucion, ficheros, espacio);
+	tDespues = high_resolution_clock::now();
+	/*********************************************
+	*FIN DEL ALGORITMO
+	*********************************************/
+	duration<double> transcurrido = duration_cast<duration<double>>(tDespues - tAntes);
+	printf("%d %f\n",(int)ficheros.size(),transcurrido.count());
 
-	cout<<"\n##########################################################################\n";
-	cout<<"Capacidad total: "<<espacio<<endl;
-
-	cout << solucion << endl;
+	if(argc==5){
+		cout<<"\n##########################################################################\n";
+		cout<<"Capacidad total: "<<espacio<<endl;
+		cout << solucion << endl;
+	}
 
 	int numero = solucion.size();
 	char **mensaje=new char*[numero];

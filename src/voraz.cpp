@@ -4,6 +4,8 @@
 #include <list>
 #include <stdlib.h>
 #include <climits>
+#include <chrono>
+using namespace std::chrono;
 
 ostream & operator<<(ostream & s, const list <texto> &f){
 	//s << fin << endl;
@@ -107,11 +109,9 @@ void Algoritmo_Voraz (int opcion , string capa){
 		//solucion.push_back(*it);
 		if(Factible(*it,solucion)){
 			solucion.push_back(*it);
-		}else{ 
-			if(capa == "P" && m == 0){
+		}else if(capa == "P" && m == 0){
 				solucion.push_back(*it);
 				m++;
-			}
 		}
 	}
 }
@@ -133,19 +133,36 @@ int main(int argc, char *argv[]){
 	espacio=(imagen.num_filas()*imagen.num_cols()/8)-1;
 
 	cargarDatosFicheros(argv[2],argv[3],ficheros);
-	
-	cout<<"Imagen en la que ocultar: "<<argv[1]<<endl;
-	cout<<"Ficheros:"<<endl;
-	cout << ficheros << endl;
+	//Si se pone un argumento extra no se imprime para poder analizar el tiempo
+	if(argc<7){
+		cout<<"Imagen en la que ocultar: "<<argv[1]<<endl;
+		cout<<"Ficheros:"<<endl;
+		cout << ficheros << endl;
 
-	cout<<"\n##########################################################################\n";
-	cout<<"Capacidad total: "<<espacio<<endl;
+		cout<<"\n##########################################################################\n";
+		cout<<"Capacidad total: "<<espacio<<endl;
+	}
+	
 	int opcion = atoi (argv[4]);
 	string Capa = argv[5];
 
+	/*********************************************
+	*INICIO DEL ALGORITMO
+	*********************************************/
+	high_resolution_clock::time_point tAntes, tDespues;
+	tAntes = high_resolution_clock::now();
 	Algoritmo_Voraz(opcion,Capa);
+	tDespues = high_resolution_clock::now();
+	/*********************************************
+	*FIN DEL ALGORITMO
+	*********************************************/
+	duration<double> transcurrido = duration_cast<duration<double>>(tDespues - tAntes);
+	printf("%d %f\n",(int)ficheros.size(),transcurrido.count());
 
-	cout << solucion << endl;
+	if(argc<7){
+		cout << solucion << endl;
+	}
+	
 	int numero = solucion.size();
 	int i=0;
 	char **mensaje=new char*[numero];

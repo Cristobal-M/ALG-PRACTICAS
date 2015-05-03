@@ -1,5 +1,5 @@
 #fichero 	benfifio	peso
-Quijote.txt	10		62200
+Quijote.txt	10		1220
 mergesort.cpp	100		5990
 areas2010.txt	200	4293
 jcr_eng_man_2010_ini.txt	250		2968
