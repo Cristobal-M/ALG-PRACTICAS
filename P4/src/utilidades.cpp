@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <set>
-#include <utilidades.h>
+#include "utilidades.h"
 using namespace std;
 
 // void leeLetras(char *fichero, vector<Letra> &salida){
