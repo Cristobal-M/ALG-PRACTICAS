@@ -42,7 +42,7 @@ void leeLetras(char *fichero, vector<char> &salida, map<char,int> &puntuaciones)
 	while(!fi.eof()){
 		fi>>l;
     fi>>buffer;
-    char letra=l[0];
+    char letra=tolower(l[0]);
     int cant=atoi(buffer);
     //Insertamos las letras tantas veces como indica su cantidad
     for(int i=0;i<cant;i++){
