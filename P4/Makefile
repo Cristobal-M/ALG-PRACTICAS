@@ -13,10 +13,10 @@ documentacion:
 	doxygen doc/doxys/Doxyfile
 
 # ************ Compilación de módulos ************
-$(BIN)/letras_backtracking: $(OBJ)/variaciones.o $(OBJ)/pruebavariaciones.o $(OBJ)/utilidades.o
+$(BIN)/letras_backtracking: $(OBJ)/variaciones.o $(OBJ)/letras_backtracking.o $(OBJ)/utilidades.o
 	$(CXX) -o $(BIN)/letras_backtracking  $(OBJ)/letras_backtracking.o $(OBJ)/variaciones.o
 
-$(OBJ)/letras_backtracking.o: $(SRC)/letras_backtracking.cpp $(INC)/variaciones.h 
+$(OBJ)/letras_backtracking.o: $(SRC)/letras_backtracking.cpp
 	$(CXX) $(CPPFLAGS) $(SRC)/letras_backtracking.cpp -o $(OBJ)/letras_backtracking.o 
 
 $(BIN)/pruebavariaciones: $(OBJ)/variaciones.o $(OBJ)/pruebavariaciones.o

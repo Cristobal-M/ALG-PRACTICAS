@@ -1,6 +1,11 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <map>
+#include <stdio.h>
+#include <stdlib.h>
+#include <set>
+#include <utilidades.h>
 using namespace std;
 
 // void leeLetras(char *fichero, vector<Letra> &salida){
@@ -40,7 +45,7 @@ void leeLetras(char *fichero, vector<char> &salida, map<char,int> &puntuaciones)
     char letra=l[0];
     int cant=atoi(buffer);
     //Insertamos las letras tantas veces como indica su cantidad
-    for(int i=0;<cant;i++){
+    for(int i=0;i<cant;i++){
       salida.push_back(letra);
     }
     puntuaciones[letra]=atoi(buffer);
@@ -50,7 +55,6 @@ void leeLetras(char *fichero, vector<char> &salida, map<char,int> &puntuaciones)
 }
 
 void leePalabras(char *fichero, set<string> &salida){
-  salida.resize(0);
 	ifstream fi (fichero, ifstream::in);
 
 	//Sacamos los tres primeros

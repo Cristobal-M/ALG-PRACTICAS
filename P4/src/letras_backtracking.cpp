@@ -1,9 +1,13 @@
 
 #include <iostream>
 #include "variaciones.h"
+#include "utilidades.h"
 #include <string>
 #include <vector>
 #include <map>
+#include <set>
+#include <stdio.h>
+#include <stdlib.h>
 using namespace std;
 
 void ImprimeCadena(const string &c,const Variaciones &P){
@@ -21,8 +25,8 @@ void ImprimeCadena(const string &c,const Variaciones &P){
 
 void sintaxis(){
   cerr<<"letras_backtracking spanish letras.txt 8"<<endl;
-  cerr<<"El nombre del fichero con el diccionario
-        \nEl nombre del fichero con las letras
+  cerr<<"El nombre del fichero con el diccionario \
+        \nEl nombre del fichero con las letras \
         \nEl numero de letras que se deben generar de forma aleatoria"<<endl;
 }
 
@@ -38,7 +42,7 @@ int main(int argc,char **argv){
   map<char,int> puntuaciones;
   set<string> diccionario;
   //Lellemos las letras y puntuaciones de cada una
-  leeLetras(argv[2], letras, puntuaciones)
+  leeLetras(argv[2], letras, puntuaciones);
   leePalabras(argv[1], diccionario);
   //Elegimos de forma aleaotia las letras
   cout<<"Las letras son: ";
@@ -56,9 +60,9 @@ int main(int argc,char **argv){
   }
   else{
     cout<<"Tu solucion no esta en el diccionario "<<endl;
-    exit();
+    exit(1);
   }
-exit();
+exit(1);
 //////////////////////////////////////////////////////////////////////////////
   string cad;
   do{
