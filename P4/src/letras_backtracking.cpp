@@ -8,7 +8,7 @@
 #include <set>
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h> 
+#include <time.h>
 using namespace std;
 
 void ImprimeCadena(const string &c,const Variaciones &P){
@@ -48,7 +48,7 @@ int main(int argc,char **argv){
   //Elegimos de forma aleaotia las letras
   cout<<"Las letras son: ";
   for(int i = 0; i < nLetras; i++){
-      letrasElegidas[i] = rand() % nLetras;
+      letrasElegidas[i] = rand() % letras.size();
       cout<<letras[letrasElegidas[i]];
   }
   cout<<endl<<"Dime tu solucion: ";
