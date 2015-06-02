@@ -13,8 +13,11 @@ documentacion:
 	doxygen doc/doxys/Doxyfile
 
 # ************ Compilación de módulos ************
+$(OBJ)/utilidades.o: $(SRC)/utilidades.cpp $(INC)/utilidades.h 
+	$(CXX) $(CPPFLAGS) $(SRC)/utilidades.cpp -o $(OBJ)/utilidades.o	
+
 $(BIN)/letras_backtracking: $(OBJ)/variaciones.o $(OBJ)/letras_backtracking.o $(OBJ)/utilidades.o
-	$(CXX) -o $(BIN)/letras_backtracking  $(OBJ)/letras_backtracking.o $(OBJ)/variaciones.o
+	$(CXX) -o $(BIN)/letras_backtracking  $(OBJ)/letras_backtracking.o $(OBJ)/variaciones.o $(OBJ)/utilidades.o
 
 $(OBJ)/letras_backtracking.o: $(SRC)/letras_backtracking.cpp
 	$(CXX) $(CPPFLAGS) $(SRC)/letras_backtracking.cpp -o $(OBJ)/letras_backtracking.o 
@@ -27,8 +30,7 @@ $(OBJ)/pruebavariaciones.o: $(SRC)/pruebavariaciones.cpp $(INC)/variaciones.h
 $(OBJ)/variaciones.o: $(SRC)/variaciones.cpp $(INC)/variaciones.h
 	$(CXX) $(CPPFLAGS) $(SRC)/variaciones.cpp -o $(OBJ)/variaciones.o
 
-$(OBJ)/utilidades.o: $(SRC)/utilidades.cpp $(INC)/utilidades.h 
-	$(CXX) $(CPPFLAGS) $(SRC)/utilidades.cpp -o $(OBJ)/utilidades.o	
+
 # ************ Limpieza ************
 clean :
 	-rm $(OBJ)/* $(SRC)/*~ $(INC)/*~ ./*~
