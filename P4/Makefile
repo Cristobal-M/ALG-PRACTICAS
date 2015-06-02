@@ -21,6 +21,8 @@ $(OBJ)/pruebavariaciones.o: $(SRC)/pruebavariaciones.cpp $(INC)/variaciones.h
 $(OBJ)/variaciones.o: $(SRC)/variaciones.cpp $(INC)/variaciones.h
 	$(CXX) $(CPPFLAGS) $(SRC)/variaciones.cpp -o $(OBJ)/variaciones.o
 
+$(OBJ)/utilidades.o: $(SRC)/utilidades.cpp $(INC)/imagen.h $(INC)/utilidades.h 
+	$(CXX) $(CPPFLAGS) $(SRC)/utilidades.cpp -o $(OBJ)/utilidades.o	
 # ************ Limpieza ************
 clean :
 	-rm $(OBJ)/* $(SRC)/*~ $(INC)/*~ ./*~
