@@ -26,7 +26,7 @@ using namespace std;
 void leeLetras(char *fichero, vector<char> &salida, map<char,int> &puntuaciones){
   salida.resize(0);
   puntuaciones.clear();
-	ifstream fi (rutaFichero);
+	ifstream fi(fichero, ifstream::in);
 
 	char buffer[100];
   char l[1];
@@ -51,7 +51,7 @@ void leeLetras(char *fichero, vector<char> &salida, map<char,int> &puntuaciones)
 
 void leePalabras(char *fichero, set<string> &salida){
   salida.resize(0);
-	ifstream fi (rutaFichero);
+	ifstream fi (fichero, ifstream::in);
 
 	//Sacamos los tres primeros
 	while(!fi.eof()){
