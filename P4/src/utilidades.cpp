@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "letra.h"
+#include <map>
 using namespace std;
 
 // void leeLetras(char *fichero, vector<Letra> &salida){

@@ -3,6 +3,7 @@
 #include "variaciones.h"
 #include <string>
 #include <vector>
+#include <map>
 using namespace std;
 
 void ImprimeCadena(const string &c,const Variaciones &P){
