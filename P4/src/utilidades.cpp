@@ -48,8 +48,9 @@ void leeLetras(char *fichero, vector<char> &salida, map<char,int> &puntuaciones)
     for(int i=0;i<cant;i++){
       salida.push_back(letra);
     }
-    puntuaciones[letra]=atoi(buffer);
     fi>>buffer;
+    puntuaciones[letra]=atoi(buffer);
+    
 
 	}
 }

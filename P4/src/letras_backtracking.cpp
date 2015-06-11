@@ -24,6 +24,14 @@ void ImprimeCadena(const string &c,const Variaciones &P){
   cout<<endl;
 }
 
+int puntuacionPalabra (const string &P, const map<char,int> &pun){
+	int Puntuacion=0;	
+	for (const char & c : P){
+		Puntuacion += pun.at(c);
+	}
+	return Puntuacion;
+}
+
 void ImprimePalabra(const int* E,const vector<char> &letras,const Variaciones &P){
 
   Variaciones::const_iterator s= P.begin();
@@ -71,6 +79,7 @@ int main(int argc,char **argv){
   std::set<string>::iterator it=diccionario.find(solucionUsuario);
   if(it!=dicEnd){
     cout<<"Tu solucion tiene una longitud de: "<<solucionUsuario.length()<<endl;
+    cout<<"Puntuacion: " << puntuacionPalabra(solucionUsuario,puntuaciones)<<endl;
   }
   else{
     cout<<"Tu solucion no esta en el diccionario "<<endl;
@@ -78,6 +87,7 @@ int main(int argc,char **argv){
   }
   Variaciones Deep(nLetras); //Recorre todas las posibilidades en profundidad
   int cnt2=1;
+  
   do{
     cout<<cnt2<<"-->";
     ImprimePalabra(letrasElegidas, letras,Deep);
