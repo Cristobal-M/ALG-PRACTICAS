@@ -67,7 +67,8 @@ class Variaciones{
      bool EsVariacion( int nivel);
      
     
-     /** @brief Comprueba si la secuencia, de longitud nivel, se le puede poner valores diferentes en la                    posicion nivel (hermanos en el arbol de soluciones).
+     /** @brief Comprueba si la secuencia, de longitud nivel, se le puede poner valores diferentes en la          
+     						posicion nivel (hermanos en el arbol de soluciones).
      * @return true si se puede generar un prefijo de variacion de longitud nivel
      *         false en caso contrario
      * 
