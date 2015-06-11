@@ -27,3 +27,4 @@
 *.out
 *.app
 bin/*
+P4/bin/*
