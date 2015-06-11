@@ -24,6 +24,19 @@ void ImprimeCadena(const string &c,const Variaciones &P){
   cout<<endl;
 }
 
+void ImprimePalabra(const int* E,const vector<char> &letras,const Variaciones &P){
+
+  Variaciones::const_iterator s= P.begin();
+
+
+  for (;s!=P.end();++s){
+
+     cout<<letras[E[(*s)-1]];
+  }
+
+  cout<<endl;
+}
+
 void sintaxis(){
   cerr<<"letras_backtracking spanish letras.txt 8"<<endl;
   cerr<<"El nombre del fichero con el diccionario \
@@ -63,7 +76,17 @@ int main(int argc,char **argv){
     cout<<"Tu solucion no esta en el diccionario "<<endl;
     exit(1);
   }
+  Variaciones Deep(nLetras); //Recorre todas las posibilidades en profundidad
+  int cnt2=1;
+  do{
+    cout<<cnt2<<"-->";
+    ImprimePalabra(letrasElegidas, letras,Deep);
+    cnt2++;
+  }while(Deep.GeneraSiguienteProfundidad());
 exit(1);
+
+/*
+
 //////////////////////////////////////////////////////////////////////////////
   string cad;
   do{
@@ -150,7 +173,7 @@ exit(1);
       cout<<endl;
     }
 
-
+*/
 
 
 
