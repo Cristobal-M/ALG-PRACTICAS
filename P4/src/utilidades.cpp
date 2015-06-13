@@ -78,7 +78,7 @@ int puntuacionPalabra (const string &P, const map<char,int> &pun){
   1->es prefijo de alguna palabra
   0->no se ha encontrado coincidencia
 */
-bool validaPalabra(string palabra, set<string> diccionario){
+bool validarPalabra(string palabra, set<string> diccionario){
   set<string>::iterator it=diccionario.begin();
   while(it!=diccionario.end()){
     if(palabra.size() <= (*it).size() && (*it).compare(0, palabra.size(), palabra) == 0){
@@ -103,4 +103,17 @@ void ImprimePalabra(const int* E,const vector<char> &letras,const Variaciones &P
   }
 
   cout<<endl;
+}
+/*
+E-> el array con los indices de las letras seleccionadas
+letras-> array de char con las letras correspondiente al indice indicado en la solucion
+P-> Las variaciones sobre E
+*/
+string componerPalabra(const int* E,const vector<char> &letras,const Variaciones &P){
+  Variaciones::const_iterator s= P.begin();
+  string salida="";
+  for (;s!=P.end();++s){
+     salida.push_back(letras[E[(*s)-1]]);
+  }
+  return salida;
 }

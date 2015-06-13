@@ -56,6 +56,11 @@ int main(int argc,char **argv){
 
   do{
     cout<<cnt2<<"-->";
+    string palabra=componerPalabra(letrasElegidas, letras,Deep);
+    int c=validarPalabra(palabra);
+    if(c==0){
+      Deep.backtraking();
+    }
     ImprimePalabra(letrasElegidas, letras,Deep);
     cnt2++;
   }while(Deep.GeneraSiguienteProfundidad());
