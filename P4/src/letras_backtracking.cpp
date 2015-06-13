@@ -41,6 +41,11 @@ int main(int argc,char **argv){
   cout<<endl<<"Dime tu solucion: ";
   string solucionUsuario;
   cin>>solucionUsuario;
+
+/*
+  cout<<solucionUsuario.compare(0,2,"tu");
+  exit(1);
+*/
   std::set<string>::iterator dicEnd=diccionario.end();
   std::set<string>::iterator it=diccionario.find(solucionUsuario);
   if(it!=dicEnd){
@@ -53,17 +58,35 @@ int main(int argc,char **argv){
   }
   Variaciones Deep(nLetras); //Recorre todas las posibilidades en profundidad
   int cnt2=1;
-
+  bool continua=true;
+  //Variable de la mejor palabra
+  string mejorPalabra=solucionUsuario;
+  int puntMejorPalabra=puntuacionPalabra(mejorPalabra,puntuaciones);
+  //iniciamos el bucle
   do{
-    cout<<cnt2<<"-->";
+    //cout<<cnt2<<"-->";
     string palabra=componerPalabra(letrasElegidas, letras,Deep);
     int c=validarPalabra(palabra, diccionario);
     if(c==0){
-      Deep.Backtracking();
+      continua=Deep.Backtracking();
     }
-    ImprimePalabra(letrasElegidas, letras,Deep);
+    else{
+      //Si es una valida
+      if(c==2){
+        int punt=puntuacionPalabra(palabra, puntuaciones);
+        if(punt>puntMejorPalabra){
+          puntMejorPalabra=punt;
+          mejorPalabra=palabra;
+        }
+      }
+      continua=Deep.GeneraSiguienteProfundidad();
+    }
+    cout<<c<<" \""<<palabra<<"\""<<endl;
     cnt2++;
-  }while(Deep.GeneraSiguienteProfundidad());
+  }while(continua);
+  cout<<( (solucionUsuario.compare(mejorPalabra)==0 )?"No he encontrado una mejor solucion a: ":"He obtenido la solucion: " )
+  <<mejorPalabra<<endl;
+  cout<<"Puntuacion: " << puntMejorPalabra<<endl;
 exit(1);
 
 /*
