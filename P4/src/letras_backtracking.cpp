@@ -11,40 +11,6 @@
 #include <time.h>
 using namespace std;
 
-void ImprimeCadena(const string &c,const Variaciones &P){
-
-  Variaciones::const_iterator s= P.begin();
-
-
-  for (;s!=P.end();++s){
-
-     cout<<c[(*s)-1];
-  }
-
-  cout<<endl;
-}
-
-int puntuacionPalabra (const string &P, const map<char,int> &pun){
-	int Puntuacion=0;	
-	for (const char & c : P){
-		Puntuacion += pun.at(c);
-	}
-	return Puntuacion;
-}
-
-void ImprimePalabra(const int* E,const vector<char> &letras,const Variaciones &P){
-
-  Variaciones::const_iterator s= P.begin();
-
-
-  for (;s!=P.end();++s){
-
-     cout<<letras[E[(*s)-1]];
-  }
-
-  cout<<endl;
-}
-
 void sintaxis(){
   cerr<<"letras_backtracking spanish letras.txt 8"<<endl;
   cerr<<"El nombre del fichero con el diccionario \
@@ -87,7 +53,7 @@ int main(int argc,char **argv){
   }
   Variaciones Deep(nLetras); //Recorre todas las posibilidades en profundidad
   int cnt2=1;
-  
+
   do{
     cout<<cnt2<<"-->";
     ImprimePalabra(letrasElegidas, letras,Deep);

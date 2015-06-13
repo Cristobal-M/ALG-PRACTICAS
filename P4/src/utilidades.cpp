@@ -50,7 +50,7 @@ void leeLetras(char *fichero, vector<char> &salida, map<char,int> &puntuaciones)
     }
     fi>>buffer;
     puntuaciones[letra]=atoi(buffer);
-    
+
 
 	}
 }
@@ -64,4 +64,29 @@ void leePalabras(char *fichero, set<string> &salida){
 		fi>>palabra;
 		salida.insert(palabra);
 	}
+}
+
+int puntuacionPalabra (const string &P, const map<char,int> &pun){
+	int Puntuacion=0;
+	for (const char & c : P){
+		Puntuacion += pun.at(c);
+	}
+	return Puntuacion;
+}
+
+bool validaPalabra(string palabra, set<string> diccionario){
+  
+}
+
+void ImprimePalabra(const int* E,const vector<char> &letras,const Variaciones &P){
+
+  Variaciones::const_iterator s= P.begin();
+
+
+  for (;s!=P.end();++s){
+
+     cout<<letras[E[(*s)-1]];
+  }
+
+  cout<<endl;
 }
