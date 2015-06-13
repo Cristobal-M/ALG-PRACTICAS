@@ -5,11 +5,20 @@
 #include <vector>
 #include <map>
 #include <set>
+#include "variaciones.h"
 using namespace std;
 
 void leeLetras(char *fichero, vector<char> &salida, map<char,int> &puntuaciones);
 
 
 void leePalabras(char *fichero, set<string> &salida);
+
+void ImprimePalabra(const int* E,const vector<char> &letras,const Variaciones &P);
+
+string componerPalabra(const int* E,const vector<char> &letras,const Variaciones &P);
+
+bool validarPalabra(string palabra, set<string> diccionario);
+
+int puntuacionPalabra (const string &P, const map<char,int> &pun);
 
 #endif

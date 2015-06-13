@@ -57,9 +57,9 @@ int main(int argc,char **argv){
   do{
     cout<<cnt2<<"-->";
     string palabra=componerPalabra(letrasElegidas, letras,Deep);
-    int c=validarPalabra(palabra);
+    int c=validarPalabra(palabra, diccionario);
     if(c==0){
-      Deep.backtraking();
+      Deep.Backtracking();
     }
     ImprimePalabra(letrasElegidas, letras,Deep);
     cnt2++;
