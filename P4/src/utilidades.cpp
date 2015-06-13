@@ -78,14 +78,13 @@ int puntuacionPalabra (const string &P, const map<char,int> &pun){
   1->es prefijo de alguna palabra
   0->no se ha encontrado coincidencia
 */
-bool validarPalabra(string palabra, set<string> diccionario){
+int validarPalabra(const string palabra, set<string> diccionario){
   set<string>::iterator it=diccionario.begin();
   int salida=0;
   while(it!=diccionario.end()){
-    if(palabra.size() <= (*it).size() && (*it).compare(0, palabra.size(), palabra) == 0){
-      if(palabra.size() == (*it).size())
-        return 2;
-      else
+    if(palabra.size() <= ((string)*it).size() && ((string)*it).compare(0, palabra.size(), palabra) == 0){
+        if(palabra.size() == ((string)*it).size())
+          return 2;
         salida=1;
     }
     ++it;

@@ -17,7 +17,7 @@ void ImprimePalabra(const int* E,const vector<char> &letras,const Variaciones &P
 
 string componerPalabra(const int* E,const vector<char> &letras,const Variaciones &P);
 
-bool validarPalabra(string palabra, set<string> diccionario);
+int validarPalabra(const string palabra, set<string> diccionario);
 
 int puntuacionPalabra (const string &P, const map<char,int> &pun);
 

@@ -62,6 +62,7 @@ int main(int argc,char **argv){
   //Variable de la mejor palabra
   string mejorPalabra=solucionUsuario;
   int puntMejorPalabra=puntuacionPalabra(mejorPalabra,puntuaciones);
+
   //iniciamos el bucle
   do{
     //cout<<cnt2<<"-->";
@@ -81,7 +82,7 @@ int main(int argc,char **argv){
       }
       continua=Deep.GeneraSiguienteProfundidad();
     }
-    cout<<c<<" \""<<palabra<<"\""<<endl;
+    cout<<c<<" "<<palabra.size()<<" \""<<palabra<<"\""<<endl;
     cnt2++;
   }while(continua);
   cout<<( (solucionUsuario.compare(mejorPalabra)==0 )?"No he encontrado una mejor solucion a: ":"He obtenido la solucion: " )
