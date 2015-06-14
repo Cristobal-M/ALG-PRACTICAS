@@ -117,3 +117,13 @@ string componerPalabra(const int* E,const vector<char> &letras,const Variaciones
   }
   return salida;
 }
+
+int puntuacionSolucion(const int* E,const vector<char> &letras,const Variaciones &P, const map<char,int> &pun){
+  Variaciones::const_iterator s= P.begin();
+  int salida=0;
+  for (;s!=P.end();++s){
+    char letra=letras[E[(*s)-1]]);
+    salida+=pun.at(letra);
+  }
+  return salida;
+}

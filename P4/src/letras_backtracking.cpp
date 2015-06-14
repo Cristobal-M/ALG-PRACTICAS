@@ -68,11 +68,12 @@ int main(int argc,char **argv){
     //cout<<cnt2<<"-->";
     string palabra=componerPalabra(letrasElegidas, letras,Deep);
     int c=validarPalabra(palabra, diccionario);
+    //Si no esta en el diccionario ni como prefijo
     if(c==0){
       continua=Deep.Backtracking();
     }
     else{
-      //Si es una valida
+      //Si esta en el diccionario
       if(c==2){
         int punt=puntuacionPalabra(palabra, puntuaciones);
         if(punt>puntMejorPalabra){
@@ -82,8 +83,8 @@ int main(int argc,char **argv){
       }
       continua=Deep.GeneraSiguienteProfundidad();
     }
-    cout<<c<<" "<<palabra.size()<<" \""<<palabra<<"\""<<endl;
-    cnt2++;
+    //cout<<c<<" "<<palabra.size()<<" \""<<palabra<<"\""<<endl;
+    //cnt2++;
   }while(continua);
   cout<<( (solucionUsuario.compare(mejorPalabra)==0 )?"No he encontrado una mejor solucion a: ":"He obtenido la solucion: " )
   <<mejorPalabra<<endl;
