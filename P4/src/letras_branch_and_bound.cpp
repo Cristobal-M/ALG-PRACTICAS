@@ -70,7 +70,7 @@ int main(int argc,char **argv){
   int CG=puntuacionPalabra(mejorPalabra,puntuaciones);
   vector<vector<unsigned int> >hijos=Deep.GeneraHijos();
   do{
-    for(int i=0;i<hijos.size();i++){
+    for(int i=0;i<(unsigned)hijos.size();i++){
       Nodo nodo(hijos[i], letrasElegidas, puntuaciones, Deep.Nivel());
       if(nodo.getCS()>CG)
         LNV.push_back(nodo);

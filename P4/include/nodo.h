@@ -2,6 +2,7 @@
 #define __NODO__H
 #include <vector>
 #include <iostream>
+#include <algorithm>
 #include "variaciones.h"
 using namespace std;
 class Nodo{
@@ -24,10 +25,11 @@ private:
         letrasRestantes.erase(letrasRestantes.begin()+ind);
       }
     }
-    letrasRestantes.sort(letrasRestantes.begin(), letrasRestantes.end());
+    //Deberia ordenarse en base a una funcion para hacer gredy
+    sort(letrasRestantes.begin(), letrasRestantes.end());
     CS=CI;
     //n-nivel del Nodo
-    for (unsigned i=0;i<letrasElegidas.size()-nivel;i++){
+    for (unsigned i=0;i<letrasElegidas->size()-nivel;i++){
       char letra=letrasRestantes.back();
       letrasRestantes.pop_back();
       CS+=puntuaciones->at(letra);
@@ -41,7 +43,7 @@ public:
     puntuaciones=p;
     nivel=n;
   }
-  vector<int> get(){
+  vector<unsigned int> get(){
     return variacion;
   }
   int getNivel(){
@@ -61,5 +63,5 @@ public:
     }
     return salida;
   }
-}
+};
 #endif

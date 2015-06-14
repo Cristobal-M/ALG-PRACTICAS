@@ -7,7 +7,7 @@ CPPFLAGS = -std=c++11 -Wall -g  -I$(INC) -c
 
 
 all: $(BIN)/letras_backtracking
-
+branch: $(BIN)/letras_branch
 # ************ Generación de documentación ******************
 documentacion:
 	doxygen doc/doxys/Doxyfile
