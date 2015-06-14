@@ -2,6 +2,7 @@
 #include <iostream>
 #include "variaciones.h"
 #include "utilidades.h"
+#include "nodo.h"
 #include <string>
 #include <vector>
 #include <map>
@@ -9,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
 using namespace std;
 
 void sintaxis(){

@@ -122,7 +122,7 @@ int puntuacionSolucion(const int* E,const vector<char> &letras,const Variaciones
   Variaciones::const_iterator s= P.begin();
   int salida=0;
   for (;s!=P.end();++s){
-    char letra=letras[E[(*s)-1]]);
+    char letra=letras[E[(*s)-1]];
     salida+=pun.at(letra);
   }
   return salida;

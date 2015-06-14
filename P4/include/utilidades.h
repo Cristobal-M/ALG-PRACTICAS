@@ -21,6 +21,6 @@ int validarPalabra(const string palabra, set<string> diccionario);
 
 int puntuacionPalabra (const string &P, const map<char,int> &pun);
 
-int puntuacionSolucion(const int* E,const vector<char> &letras,const Variaciones &P, const map<char,int> &pun)
+int puntuacionSolucion(const int* E,const vector<char> &letras,const Variaciones &P, const map<char,int> &pun);
 
 #endif

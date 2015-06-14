@@ -34,7 +34,7 @@ private:
     }
   }
 public:
-  Nodo(){}
+  Nodo(){};
   Nodo(vector<unsigned int> v, vector<char>* lE, map<char,int> *p, int n){
     variacion=v;
     letrasElegidas=lE;
